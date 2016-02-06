@@ -37,9 +37,9 @@ namespace ASEParser
 		unsigned int m_lastFrame;
 		unsigned int m_framespeed;
 		unsigned int m_ticksPerFrame;
-		Vector3 m_backgroundStatit;
+		Vector3 m_backgroundStatic;
 		Vector3 m_ambientStatic;
-		vector<Object> m_objects;
+		vector<ShapeObject> m_shapeObjects;
 	};
 
 	// Base class for a 3d entity.
@@ -50,6 +50,7 @@ namespace ASEParser
 		Vector3 InheritRotaion;
 		Vector3 InheritScale;
 		Matrix4 TransformationMatrix;
+		Vector3 Position;
 		Vector3 RotationAxis;
 		float RotationAngle;
 		Vector3 Scale;

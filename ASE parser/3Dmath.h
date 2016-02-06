@@ -38,7 +38,7 @@ namespace Math3D
 	class Matrix4
 	{
 	public:
-		Matrix4() {}
+		Matrix4() { for (int i = 0; i < 16; i++) m[i] = 0.0f; }
 		Matrix4(float& matrix) { *this = matrix; };
 		Matrix4(float _00_, float _01_, float _02_, float _03_, float _10_, float _11_, float _12_, float _13_, float _20_, float _21_, float _22_, float _23_, float _30_, float _31_, float _32_, float _33_)
 		{
