@@ -102,8 +102,8 @@ namespace Math3D
 
 		void XRotation(float angle)
 		{
-			float sn = sin(angle);
-			float cs = cos(angle);
+			float sn = (float)sin(angle);
+			float cs = (float)cos(angle);
 
 			Identity();
 
@@ -115,8 +115,8 @@ namespace Math3D
 
 		void YRotation(float angle)
 		{
-			float cs = cos(angle);
-			float sn = sin(angle);
+			float cs = (float)cos(angle);
+			float sn = (float)sin(angle);
 
 			Identity();
 
@@ -128,8 +128,8 @@ namespace Math3D
 
 		void ZRotation(float angle)
 		{
-			float sn = sin(angle);
-			float cs = cos(angle);
+			float sn = (float)sin(angle);
+			float cs = (float)cos(angle);
 
 			Identity();
 

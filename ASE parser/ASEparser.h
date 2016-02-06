@@ -3,13 +3,23 @@
 #include "3Dmath.h"
 #include <string>
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 using namespace std;
 using namespace Math3D;
 
 #ifndef ASE_PARSER
 
+#define ASE_VERBOSE true
+
 namespace ASEParser
 {
+	struct Object;
+	struct LineVertex;
+	struct ShapeLine;
+	struct ShapeObject;
+
 	// Main class for ASE files parsing.
 	class Parser
 	{
@@ -17,8 +27,12 @@ namespace ASEParser
 		Parser(wstring filename);
 		~Parser();
 
+		// Parse form a file in disk.
+		void Parse(wstring filename);
+
 	private:
 		wstring m_fileName;
+		wstring m_originFilename;
 		unsigned int m_firstFrame;
 		unsigned int m_lastFrame;
 		unsigned int m_framespeed;
@@ -46,18 +60,18 @@ namespace ASEParser
 	// Vertex information about a vertex in a shape object.
 	struct LineVertex
 	{
-		ShapeLine::VERTEX_KIND VertexKind;
+		enum VERTEX_KIND
+		{
+			KNOT,
+			INTERPOLATION
+		};
+		VERTEX_KIND VertexKind;
 		Vector3 Position;
 	};
 
 	// Grouo of vertex ina shape object.
 	struct ShapeLine
 	{
-		enum VERTEX_KIND
-		{
-			KNOT,
-			INTERPOLATION
-		};
 		vector<LineVertex> vertices;
 	};
 
