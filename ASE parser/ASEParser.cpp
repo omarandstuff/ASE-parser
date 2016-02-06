@@ -238,7 +238,7 @@ void Parser::Parse(wstring filename)
 
 							*newLine >> lastVertex->Position.x;
 							*newLine >> lastVertex->Position.y;
-							*newLine >> lastVertex->Position.x;
+							*newLine >> lastVertex->Position.z;
 						}
 						
 

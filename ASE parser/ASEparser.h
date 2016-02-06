@@ -30,7 +30,7 @@ namespace ASEParser
 		// Parse form a file in disk.
 		void Parse(wstring filename);
 
-	private:
+	public:
 		wstring m_fileName;
 		wstring m_originFilename;
 		unsigned int m_firstFrame;
