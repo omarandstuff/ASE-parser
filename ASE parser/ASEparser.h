@@ -3,14 +3,14 @@
 #include "3Dmath.h"
 #include <string>
 using namespace std;
+using namespace Math3D;
 
 #ifndef ASE_PARSER
 
 namespace ASEParser
 {
-	class Object
+	struct Object
 	{
-
 	};
 
 	class ASEParser
