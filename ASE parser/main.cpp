@@ -9,6 +9,9 @@ int main()
 
 	Parser parser(L"test.ASE");
 
+	parser.Scale(0.001);
+	parser.Translate(-5, -10, 20);
+
 	wcout << "Shape objects count: " << parser.m_shapeObjects.size() << endl << endl;
 	for (vector<ShapeObject>::iterator it = parser.m_shapeObjects.begin(); it != parser.m_shapeObjects.end(); it++)
 	{

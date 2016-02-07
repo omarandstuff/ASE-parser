@@ -10,7 +10,7 @@ namespace Math3D
 	class Vector3
 	{
 	public:
-		Vector3(float X = 0.0f, float Y = 0.0f, float Z = 0.0f) { x = X; y = Y; z = Z; }
+		Vector3(double X = 0.0, double Y = 0.0, double Z = 0.0) { x = X; y = Y; z = Z; }
 
 		Vector3 operator + (const Vector3 &vec) { return Vector3(vec.x + x, vec.y + y, vec.z + z); }
 		Vector3 operator += (const Vector3 &vec) { return(*this = (*this + vec)); }
@@ -18,11 +18,11 @@ namespace Math3D
 		Vector3 operator - (const Vector3 &vec) { return Vector3(x - vec.x, y - vec.y, z - vec.z); }
 		Vector3 operator -= (const Vector3 &vec) { return (*this = (*this - vec)); }
 
-		Vector3 operator * (float num) { return Vector3(x * num, y * num, z * num); }
-		Vector3 operator *= (float num) { return(*this = (*this * num)); }
+		Vector3 operator * (double num) { return Vector3(x * num, y * num, z * num); }
+		Vector3 operator *= (double num) { return(*this = (*this * num)); }
 
-		Vector3 operator / (float num) { return Vector3(x / num, y / num, z / num); }
-		Vector3 operator /= (float num) { return (*this = (*this / num)); }
+		Vector3 operator / (double num) { return Vector3(x / num, y / num, z / num); }
+		Vector3 operator /= (double num) { return (*this = (*this / num)); }
 
 		Vector3 operator - (void) { return Vector3(-x, -y, -z); }
 
@@ -30,17 +30,17 @@ namespace Math3D
 		bool operator != (Vector3 &vec) { return !(vec == *this); }
 
 	public:
-		float x;
-		float y;
-		float z;
+		double x;
+		double y;
+		double z;
 	};
 
 	class Matrix4
 	{
 	public:
-		Matrix4() { for (int i = 0; i < 16; i++) m[i] = 0.0f; }
-		Matrix4(float& matrix) { *this = matrix; };
-		Matrix4(float _00_, float _01_, float _02_, float _03_, float _10_, float _11_, float _12_, float _13_, float _20_, float _21_, float _22_, float _23_, float _30_, float _31_, float _32_, float _33_)
+		Matrix4() { for (int i = 0; i < 16; i++) m[i] = 0.0; }
+		Matrix4(double& matrix) { *this = matrix; };
+		Matrix4(double _00_, double _01_, double _02_, double _03_, double _10_, double _11_, double _12_, double _13_, double _20_, double _21_, double _22_, double _23_, double _30_, double _31_, double _32_, double _33_)
 		{
 			_00 = _00_; _01 = _01_; _02 = _02_; _03 = _03_;
 			_10 = _10_; _11 = _11_; _12 = _12_; _13 = _13_;
@@ -64,21 +64,21 @@ namespace Math3D
 		}
 		Matrix4 operator -= (const Matrix4 &matrix) { return(*this = (*this + matrix)); }
 
-		Matrix4 operator * (const float scalar) {
+		Matrix4 operator * (const double scalar) {
 			return Matrix4(_00 *= scalar, _01 *= scalar, _02 *= scalar, _03 *= scalar,
 				_10 *= scalar, _11 *= scalar, _12 *= scalar, _13 *= scalar,
 				_20 *= scalar, _21 *= scalar, _22 *= scalar, _23 *= scalar,
 				_30 *= scalar, _31 *= scalar, _32 *= scalar, _33 *= scalar);
 		}
-		Matrix4 operator *= (const float scalar) { return(*this = (*this * scalar)); }
+		Matrix4 operator *= (const double scalar) { return(*this = (*this * scalar)); }
 
-		Matrix4 operator / (const float scalar) {
+		Matrix4 operator / (const double scalar) {
 			return Matrix4(_00 *= scalar, _01 *= scalar, _02 *= scalar, _03 *= scalar,
 				_10 *= scalar, _11 *= scalar, _12 *= scalar, _13 *= scalar,
 				_20 *= scalar, _21 *= scalar, _22 *= scalar, _23 *= scalar,
 				_30 *= scalar, _31 *= scalar, _32 *= scalar, _33 *= scalar);
 		}
-		Matrix4 operator /= (const float scalar) { return(*this = (*this * scalar)); }
+		Matrix4 operator /= (const double scalar) { return(*this = (*this * scalar)); }
 
 		Matrix4 operator * (Matrix4 &matrix) {
 			return Matrix4(_00 * matrix._00 + _01 * matrix._10 + _02 * matrix._20 + _03 * matrix._30, _00 * matrix._01 + _01 * matrix._11 + _02 * matrix._21 + _03 * matrix._31, _00 * matrix._02 + _01 * matrix._12 + _02 * matrix._22 + _03 * matrix._32, _00 * matrix._03 + _01 * matrix._13 + _02 * matrix._23 + _03 * matrix._33,
@@ -90,20 +90,20 @@ namespace Math3D
 
 		Matrix4 operator *= (Matrix4 &matrix) { return(*this = (*this * matrix)); }
 
-		Vector3 operator * (Vector3 &vec) { return Vector3(vec.x * _00 + vec.y * _10 + vec.z * _20, vec.x * _01 + vec.y * _11 + vec.z * _21, vec.x * _02 + vec.y * _12 + vec.z * _22); }
+		Vector3 operator * (Vector3 &vec) { return Vector3(vec.x * _00 + vec.y * _10 + vec.z * _20 + _30, vec.x * _01 + vec.y * _11 + vec.z * _21 + _31, vec.x * _02 + vec.y * _12 + vec.z * _22 + _32); }
 
 		void Identity()
 		{
-			_00 = 1.0f; _01 = 0.0f; _02 = 0.0f; _03 = 0.0f;
-			_10 = 0.0f; _11 = 1.0f; _12 = 0.0f; _13 = 0.0f;
-			_20 = 0.0f; _21 = 0.0f; _22 = 1.0f; _23 = 0.0f;
-			_30 = 0.0f; _31 = 0.0f; _32 = 0.0f; _33 = 1.0f;
+			_00 = 1.0; _01 = 0.0; _02 = 0.0; _03 = 0.0;
+			_10 = 0.0; _11 = 1.0; _12 = 0.0; _13 = 0.0;
+			_20 = 0.0; _21 = 0.0; _22 = 1.0; _23 = 0.0;
+			_30 = 0.0; _31 = 0.0; _32 = 0.0; _33 = 1.0;
 		}
 
-		void XRotation(float angle)
+		void XRotation(double angle)
 		{
-			float sn = (float)sin(angle);
-			float cs = (float)cos(angle);
+			double sn = (double)sin(angle);
+			double cs = (double)cos(angle);
 
 			Identity();
 
@@ -113,10 +113,10 @@ namespace Math3D
 			_22 = cs;
 		}
 
-		void YRotation(float angle)
+		void YRotation(double angle)
 		{
-			float cs = (float)cos(angle);
-			float sn = (float)sin(angle);
+			double cs = (double)cos(angle);
+			double sn = (double)sin(angle);
 
 			Identity();
 
@@ -126,10 +126,10 @@ namespace Math3D
 			_22 = cs;
 		}
 
-		void ZRotation(float angle)
+		void ZRotation(double angle)
 		{
-			float sn = (float)sin(angle);
-			float cs = (float)cos(angle);
+			double sn = (double)sin(angle);
+			double cs = (double)cos(angle);
 
 			Identity();
 
@@ -139,7 +139,7 @@ namespace Math3D
 			_11 = cs;
 		}
 
-		void Scale(float x, float y, float z)
+		void Scale(double x, double y, double z)
 		{
 			Identity();
 			_00 = x;
@@ -147,7 +147,7 @@ namespace Math3D
 			_22 = z;
 		}
 
-		void Translate(float x, float y, float z)
+		void Translate(double x, double y, double z)
 		{
 			Identity();
 			_30 = x;
@@ -155,7 +155,7 @@ namespace Math3D
 			_32 = z;
 		}
 
-		float* ToFloat()
+		double* Todouble()
 		{
 			m[0] = _00; m[1] = _01; m[2] = _02; m[3] = _03;
 			m[4] = _10; m[5] = _11; m[6] = _12; m[7] = _13;
@@ -173,13 +173,13 @@ namespace Math3D
 		bool operator != (Matrix4 &matrix) { return !(matrix == *this); }
 
 	public:
-		float _00, _01, _02, _03;
-		float _10, _11, _12, _13;
-		float _20, _21, _22, _23;
-		float _30, _31, _32, _33;
+		double _00, _01, _02, _03;
+		double _10, _11, _12, _13;
+		double _20, _21, _22, _23;
+		double _30, _31, _32, _33;
 
 	private:
-		float m[16];
+		double m[16];
 	};
 }
 

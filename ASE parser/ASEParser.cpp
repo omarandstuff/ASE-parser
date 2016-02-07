@@ -252,3 +252,39 @@ void Parser::Parse(wstring filename)
 		delete newLine;
 	}
 }
+
+void Parser::Scale(double value)
+{
+	Matrix4 scaleMatrix;
+	
+	// Create scale matrix.
+	scaleMatrix.Scale(value, value, value);
+	for (vector<ShapeObject>::iterator so = m_shapeObjects.begin(); so != m_shapeObjects.end(); so++)
+	{
+		for (vector<ShapeLine>::iterator sl = so->lines.begin(); sl != so->lines.end(); sl++)
+		{
+			for (vector<LineVertex>::iterator vl = sl->vertices.begin(); vl != sl->vertices.end(); vl++)
+			{
+				vl->Position = scaleMatrix * vl->Position;
+			}
+		}
+	}
+}
+
+void Parser::Translate(double x, double y, double z)
+{
+	Matrix4 translateMatrix;
+
+	// Create scale matrix.
+	translateMatrix.Translate(x, y, z);
+	for (vector<ShapeObject>::iterator so = m_shapeObjects.begin(); so != m_shapeObjects.end(); so++)
+	{
+		for (vector<ShapeLine>::iterator sl = so->lines.begin(); sl != so->lines.end(); sl++)
+		{
+			for (vector<LineVertex>::iterator vl = sl->vertices.begin(); vl != sl->vertices.end(); vl++)
+			{
+				vl->Position = translateMatrix * vl->Position;
+			}
+		}
+	}
+}

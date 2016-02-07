@@ -30,6 +30,12 @@ namespace ASEParser
 		// Parse form a file in disk.
 		void Parse(wstring filename);
 
+		// Sacale every vertex in objects.
+		void Scale(double value);
+
+		// Translate every vertex in obects.
+		void Translate(double x, double y, double z);
+
 	public:
 		wstring m_fileName;
 		wstring m_originFilename;
