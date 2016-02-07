@@ -117,7 +117,15 @@ void Parser::Parse(wstring filename)
 
 				if (lineElement == L"*NODE_NAME") // Object's name.
 				{
-					*newLine >> lastObject->Name;
+					// Extract the string
+					*newLine >> lineElement;
+					lastObject->Name = lineElement;
+					while (lineElement.back() != L'\"')
+					{
+						*newLine >> lineElement;
+						lastObject->Name += L" " + lineElement;
+					}
+					lastObject->Name = lastObject->Name.substr(1, lastObject->Name.size() - 2);
 				}
 				else if (lineElement == L"*NODE_TM") // Trasformation data.
 				{
@@ -132,7 +140,15 @@ void Parser::Parse(wstring filename)
 
 						if (lineElement == L"*NODE_NAME") // Object's name.
 						{
-							*newLine >> lastObject->Name;
+							// Extract the string
+							*newLine >> lineElement;
+							lastObject->Name = lineElement;
+							while (lineElement.back() != L'\"')
+							{
+								*newLine >> lineElement;
+								lastObject->Name += L" " + lineElement;
+							}
+							lastObject->Name = lastObject->Name.substr(1, lastObject->Name.size() - 2);
 						}
 						else if (lineElement == L"*INHERIT_POS") // Position inherited.
 						{
